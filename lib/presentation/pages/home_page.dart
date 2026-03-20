@@ -1,11 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'provider_page.dart';
-import 'riverpod_page.dart';
-import 'bloc_page.dart';
 import 'provider_products_page.dart';
-import 'riverpod_products_page.dart';
-import 'bloc_products_page.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,63 +8,39 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("State Management Examples")),
-      body: ListView(
-        children: [
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 16, 16, 4),
-            child: Text('Contadores',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+      appBar: AppBar(title: const Text('Tela Inicial')),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Icon(Icons.storefront, size: 72),
+              const SizedBox(height: 16),
+              const Text(
+                'Bem-vindo ao Catálogo de Produtos',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 12),
+              const Text(
+                'Toque no botão abaixo para abrir a listagem carregada da Fake API.',
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 24),
+              ElevatedButton.icon(
+                icon: const Icon(Icons.arrow_forward),
+                label: const Text('Ver produtos'),
+                onPressed: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const ProviderProductsPage(),
+                  ),
+                ),
+              ),
+            ],
           ),
-          ListTile(
-            title: const Text("Provider — Contador"),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const ProviderPage()),
-            ),
-          ),
-          ListTile(
-            title: const Text("Riverpod — Contador"),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const RiverpodPage()),
-            ),
-          ),
-          ListTile(
-            title: const Text("BLoC — Contador"),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const BlocPage()),
-            ),
-          ),
-          const Divider(),
-          const Padding(
-            padding: EdgeInsets.fromLTRB(16, 8, 16, 4),
-            child: Text('Produtos',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-          ),
-          ListTile(
-            title: const Text("Provider — Lista de Produtos"),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const ProviderProductsPage()),
-            ),
-          ),
-          ListTile(
-            title: const Text("Riverpod — Lista de Produtos"),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const RiverpodProductsPage()),
-            ),
-          ),
-          ListTile(
-            title: const Text("BLoC — Lista de Produtos"),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const BlocProductsPage()),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
